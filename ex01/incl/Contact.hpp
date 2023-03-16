@@ -13,7 +13,8 @@ class Contact {
 		void	AddNickName(str nickname);
 		void	AddPhoneNumber(str phone);
 		void	AddDarkestSecret(str ds);
-		void	print_info(void);
+		void	print_contact(void);
+		void	print_info(int selector);
 	private:
 		str		firstname;
 		str		lastname;

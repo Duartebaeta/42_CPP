@@ -13,7 +13,15 @@ int main()
 		if (input == "EXIT")
 			return 0;
 		else if (input == "ADD")
+		{
+			system("clear");
 			pb.Add();
+		}
+		else if (input == "SEARCH")
+		{
+			system("clear");
+			pb.Search();
+		}
 	}
 	return 0;
 }

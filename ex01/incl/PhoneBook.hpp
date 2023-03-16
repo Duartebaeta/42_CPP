@@ -2,6 +2,7 @@
 # define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <array>
 
 class PhoneBook {
 	public:
@@ -10,8 +11,9 @@ class PhoneBook {
 		void Exit(void);
 		PhoneBook(void);
 	private:
-		Contact	list[8];
+		std::array<Contact, 8>	list;
 		int		cycle;
+		int		contacts;
 };
 
 #endif

@@ -1,7 +1,7 @@
 NAME := phonebook
 
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 
 PATH_SRC := src/
 PATH_OBJ := obj/
@@ -19,10 +19,13 @@ OBJS := $(SRCS:.cpp=.o)
 %.o: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@
 
+$(PATH_OBJ)%.o: $(PATH_SRC)%.cpp
+	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(INCL) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)

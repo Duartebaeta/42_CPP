@@ -1,6 +1,43 @@
 #include "../incl/Contact.hpp"
 
-void	Contact::print_info(void)
+void	Contact::print_info(int selector)
+{
+	str	info;
+	switch (selector)
+	{
+	case 0:
+		info = this->firstname;
+		break;
+	case 1:
+		info = this->lastname;
+		break;
+	case 2:
+		info = this->nickname;
+		break;
+	}
+	if (info.length() == 10)
+		std::cout << info << "|";
+	else if (info.length() > 10)
+	{
+		for (int counter = 0; counter <= 8; counter++)
+			std::cout << info[counter];
+		std::cout << ".|";
+	}
+	else
+	{
+		int	sub = 0;
+		for (int counter = 0; counter < 10; counter++)
+		{
+			if (10 - counter > (int)info.length())
+				std::cout << " ";
+			else
+				std::cout << info[sub++];
+		}
+		std::cout << "|";
+	}
+}
+
+void	Contact::print_contact(void)
 {
 	std::cout << this->firstname << std::endl;
 	std::cout << this->lastname << std::endl;
