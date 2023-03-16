@@ -8,10 +8,10 @@ int main()
 
 	while (1)
 	{
-		std::cout << "->";
+		std::cout << "Insert one of the following commands" << std::endl << "ADD, SEARCH, EXIT" << std::endl << "->";
 		getline(std::cin, input);
 		if (input == "EXIT")
-			return 0;
+			break;
 		else if (input == "ADD")
 		{
 			system("clear");
