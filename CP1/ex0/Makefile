@@ -1,15 +1,16 @@
-NAME := account
+NAME := zombie
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 
-PATH_SRC := src/
-PATH_OBJ := obj/
-PATH_INCL := incl/
+PATH_SRC := ./src
+PATH_OBJ := ./obj
+PATH_INCL := ./incl
 
-INCL := $(PATH_INCL)./Account.hpp
+INCL := $(PATH_INCL)/Zombie.hpp
 
-SRCS := $(PATH_SRC)/tests.cpp $(PATH_SRC)/Account.cpp
+SRCS := $(PATH_SRC)/main.cpp $(PATH_SRC)/newZombie.cpp \
+		$(PATH_SRC)/randomChump.cpp $(PATH_SRC)/Zombie.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
