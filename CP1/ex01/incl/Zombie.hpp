@@ -11,9 +11,10 @@ class Zombie
 		str	name;
 
 	public:
-		Zombie(str name);
+		Zombie(void);
 		~Zombie(void);
 		void announce(void);
+		void set_name(str name);
 };
 
 

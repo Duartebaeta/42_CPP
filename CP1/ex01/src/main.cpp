@@ -2,6 +2,8 @@
 
 int main()
 {
-	Zombie *head = zombieHorde(10, "Edd");
-	head->announce();
+	Zombie *head = zombieHorde(9, "Edd");
+	
+	delete[] head;
+	return 0;
 }
