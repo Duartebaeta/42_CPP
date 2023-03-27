@@ -7,10 +7,10 @@ PATH_SRC := ./src
 PATH_OBJ := ./obj
 PATH_INCL := ./incl
 
-INCL := $(PATH_INCL)/Zombie.hpp
+INCL := $(PATH_INCL)/Zombie.hpp $(PATH_INCL)/Zombie.h
 
-SRCS := $(PATH_SRC)/main.cpp $(PATH_SRC)/newZombie.cpp \
-		$(PATH_SRC)/randomChump.cpp $(PATH_SRC)/Zombie.cpp
+SRCS := $(PATH_SRC)/main.cpp $(PATH_SRC)/Zombie.cpp \
+		$(PATH_SRC)/zombieHorde.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
