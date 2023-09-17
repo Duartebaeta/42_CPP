@@ -4,8 +4,6 @@
 #include <iostream>
 #include <math.h>
 
-typedef std::string str;
-
 class Fixed {
 	private:
 		int _value;

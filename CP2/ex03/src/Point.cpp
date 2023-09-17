@@ -2,21 +2,21 @@
 
 Point::Point() : x(0), y(0)
 {
-	//std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Point::~Point()
 {
-	//std::cout << "Default destructor called" << std::endl;
+	std::cout << "Default destructor called" << std::endl;
 }
 
 Point::Point(float x, float y) : x(x), y(y)
 {
-	//std::cout << "Parameter constructor called" << std::endl;
+	std::cout << "Parameter constructor called" << std::endl;
 }
 
 Point::Point(const Point &other) : x(other.x), y(other.y) {
-	//std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 Point &Point::operator=(const Point &p)
