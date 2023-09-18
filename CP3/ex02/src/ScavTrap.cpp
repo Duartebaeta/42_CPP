@@ -19,10 +19,10 @@ ScavTrap::ScavTrap(str new_name) : ClapTrap(new_name)
 	std::cout << "Parameter constructor called, [ScavTrap]" << std::endl;
 }
 
-ScavTrap::ScavTrap( const ScavTrap &src ): ClapTrap(src)
+ScavTrap::ScavTrap( const ScavTrap &st ): ClapTrap(st)
 {
-	*this = src;
-	std::cout << "ClapTrap:" << this->get_name() << " copy constructor called" << std::endl;
+	*this = st;
+	std::cout << "ScavTrap copy constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=( ScavTrap const &src)
