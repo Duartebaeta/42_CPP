@@ -1,12 +1,6 @@
-#include <iostream>
-#include <string>
-#include <fstream>
+#include "./File.hpp"
 
-typedef std::string str;
-typedef std::ifstream input_handler;
-typedef std::ofstream output_handler;
-
-static str	line_returner(str line, str s1, str s2)
+str	line_returner(str line, str s1, str s2)
 {
 	if (s1.length() == 0)
 		return line;
@@ -36,9 +30,9 @@ int main(int argc, char **argv)
 	outfilename.append(".replace");
 
 	file.open(argv[1]);
-	outfile.open(outfilename.c_str());
 	if (file.is_open()) {
 		str line;
+		outfile.open(outfilename.c_str());
 		while (getline(file, line))
 		{
 			if (outfile.is_open())

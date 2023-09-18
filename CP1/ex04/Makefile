@@ -6,6 +6,8 @@ CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 PATH_SRC := ./
 PATH_OBJ := ./obj/
 
+INCL := $(PATH_SRC)/File.hpp
+
 SRCS := $(PATH_SRC)/main.cpp
 
 OBJS := $(SRCS:.cpp=.o)
@@ -14,7 +16,7 @@ OBJS := $(SRCS:.cpp=.o)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(PATH_OBJ)%.o: $(PATH_SRC)%.cpp
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCL) -c $< -o $@
 
 all: $(NAME)
 
@@ -27,7 +29,6 @@ clean:
 fclean: clean
 	@rm -rf $(PATH_OBJ)
 	@rm -f $(NAME)
-	@rm *.replace
 
 re: fclean all
 

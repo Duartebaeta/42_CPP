@@ -10,10 +10,13 @@ Harl::Harl()
 	this->funcPtrArray[1] = &Harl::info;
 	this->funcPtrArray[2] = &Harl::warning;
 	this->funcPtrArray[3] = &Harl::error;
+	this->funcPtrArray[4] = &Harl::invalid_arg;
+	std::cout << "Harl constructor called" << std::endl;
 }
 
 Harl::~Harl()
 {
+	std::cout << "Harl destructor called" << std::endl;
 }
 
 void Harl::debug()
@@ -36,11 +39,16 @@ void Harl::error()
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
+void Harl::invalid_arg()
+{
+	std::cout << "Invalid complain argument!" << std::endl;
+}
+
 void Harl::complain( str level )
 {
-	for (int counter = 0; counter < 4; counter++)
-	{
-		if (level == this->levels[counter])
-			(*this.*funcPtrArray[counter])();
-	}
+	int counter = 0;
+
+	while (counter < 4 && level.compare(this->levels[counter]))
+		counter++;
+	(*this.*funcPtrArray[counter])();
 }

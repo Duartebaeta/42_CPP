@@ -17,5 +17,6 @@ class Zombie
 		void set_name(str name);
 };
 
+Zombie* zombieHorde( int N, std::string name );
 
 #endif

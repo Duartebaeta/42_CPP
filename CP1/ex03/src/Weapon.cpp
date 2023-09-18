@@ -1,11 +1,14 @@
 #include "../incl/Weapon.hpp"
 
-Weapon::Weapon(str type)
+Weapon::Weapon(str type) : _type(type)
 {
-	this->_type = type;
+	std::cout << "Weapon constructor called" << std::endl;
 }
 
-Weapon::~Weapon(){}
+Weapon::~Weapon()
+{
+	std::cout << "Weapon destructor called" << std::endl;
+}
 
 void	Weapon::setType(str newType)
 {

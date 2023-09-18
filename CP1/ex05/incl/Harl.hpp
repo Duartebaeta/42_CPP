@@ -12,9 +12,10 @@ private:
 	void info( void );
 	void warning( void );
 	void error( void );
+	void invalid_arg(void);
 
 	str levels[4];
-	void (Harl::*funcPtrArray[4])();
+	void (Harl::*funcPtrArray[5])();
 public:
 	Harl(/* args */);
 	~Harl();

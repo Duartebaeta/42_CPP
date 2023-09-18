@@ -16,7 +16,7 @@ private:
 	void (Harl::*funcPtrArray[4])();
 	str levels[4];
 public:
-	Harl(/* args */);
+	Harl();
 	~Harl();
 	void complain( str complain );
 };

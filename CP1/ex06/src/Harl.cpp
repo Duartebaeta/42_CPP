@@ -10,10 +10,12 @@ Harl::Harl()
 	this->funcPtrArray[1] = &Harl::info;
 	this->funcPtrArray[2] = &Harl::warning;
 	this->funcPtrArray[3] = &Harl::error;
+	std::cout << "Harl constructor called" << std::endl;
 }
 
 Harl::~Harl()
 {
+	std::cout << "Harl destructor called" << std::endl;
 }
 
 void Harl::debug()
