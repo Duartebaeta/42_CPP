@@ -153,7 +153,7 @@ Fixed &Fixed::min(Fixed &a, Fixed &b)
 	return b;
 }
 
-const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
 {
 	if (a < b)
 		return a;

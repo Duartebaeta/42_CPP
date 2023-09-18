@@ -1,17 +1,17 @@
 NAME := animal
 
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -g
 
 PATH_SRC := ./src
 PATH_OBJ := ./obj
 PATH_INCL := ./incl
 
 INCL := $(PATH_INCL)/Animal.hpp $(PATH_INCL)/Dog.hpp $(PATH_INCL)/Cat.hpp \
-		$(PATH_INCL)/WrongCat.hpp $(PATH_INCL)/WrongAnimal.hpp
+		$(PATH_INCL)/WrongCat.hpp $(PATH_INCL)/WrongAnimal.hpp $(PATH_INCL)/Brain.hpp
 
 SRCS := $(PATH_SRC)/main.cpp $(PATH_SRC)/Animal.cpp $(PATH_SRC)/Dog.cpp $(PATH_SRC)/Cat.cpp \
-		$(PATH_SRC)/WrongCat.cpp $(PATH_SRC)/WrongAnimal.cpp
+		$(PATH_SRC)/WrongCat.cpp $(PATH_SRC)/WrongAnimal.cpp $(PATH_SRC)/Brain.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 

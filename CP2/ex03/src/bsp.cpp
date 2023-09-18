@@ -17,10 +17,19 @@ bool	bsp( Point const a, Point const b, Point const c, Point const point)
 		return false;
 
 	Fixed final_area(aot(a, b, c));
+	Fixed old;
 
 	Fixed compare(aot(a, c, point));
+	old = compare;
+	if (old == 0)
+		return false;
 	compare = compare + aot(a, b, point);
+	if (old == compare)
+		return false;
+	old = compare;
 	compare = compare + aot(b, c, point);
+	if (old == compare)
+		return false;
 	if (final_area == compare)
 		return true;
 	else
