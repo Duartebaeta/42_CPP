@@ -1,4 +1,4 @@
-NAME := claptrap
+NAME := scavtrap
 
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
@@ -7,9 +7,9 @@ PATH_SRC := ./src
 PATH_OBJ := ./obj
 PATH_INCL := ./incl
 
-INCL := $(PATH_INCL)/ClapTrap.hpp
+INCL := $(PATH_INCL)/ClapTrap.hpp $(PATH_INCL)/ScavTrap.hpp
 
-SRCS := $(PATH_SRC)/main.cpp $(PATH_SRC)/ClapTrap.cpp
+SRCS := $(PATH_SRC)/main.cpp $(PATH_SRC)/ClapTrap.cpp $(PATH_SRC)/ScavTrap.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
