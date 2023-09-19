@@ -11,11 +11,11 @@ int main()
     clap2.attack("Target2");
 
     // Test takeDamage
-    clap1.takeDamage(5);
+    clap1.takeDamage(1);
     clap2.takeDamage(2);
 
     // Test beRepaired
-    clap1.beRepaired(1);
+	clap1.beRepaired(1);
     clap2.beRepaired(3);
 	clap2.beRepaired(3);
 	clap2.beRepaired(3);

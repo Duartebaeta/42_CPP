@@ -63,13 +63,15 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		std::cout << "ClapTrap " << name << " is already down, stop the violence" << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << name << " has taken " << amount << " points of damage!" << std::endl;
-	this->hit_points -= amount;
+	std::cout << "ClapTrap " << name << " has taken " << (amount > this->max_hit ? this->max_hit : amount) << " points of damage!" << std::endl;
+	if (amount >= this->max_hit || this->hit_points - amount < 0)
+		this->hit_points = 0;
+	else
+		this->hit_points -= amount;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	// std::cout << "Clap " << this->name << " has " << this->hit_points << " hit point and " << this->max_hit << " max hit" << std::endl;
 	if (this->energy_points <= 0)
 	{
 		std::cout << "ClapTrap " << name << " is out of energy!" << std::endl;
@@ -80,7 +82,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << name << " is already fully repaired!" << std::endl;
 		return ;
 	}
-	else if (this->hit_points + (int)amount >= this->max_hit)
+	else if (this->hit_points + amount >= this->max_hit || amount >= this->max_hit)
 	{
 		std::cout << "ClapTrap " << name << " has been repaired for " << this->max_hit - this->hit_points << " hit points!" << std::endl;
 		this->hit_points = this->max_hit;

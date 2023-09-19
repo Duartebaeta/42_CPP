@@ -9,10 +9,10 @@ class ClapTrap
 {
 	private:
 		str	name;
-		int	hit_points;
-		int	energy_points;
-		int	attack_dmg;
-		int max_hit;
+		unsigned int	hit_points;
+		unsigned int	energy_points;
+		unsigned int	attack_dmg;
+		unsigned int max_hit;
 	public:
 		ClapTrap();
 		ClapTrap(str new_name);

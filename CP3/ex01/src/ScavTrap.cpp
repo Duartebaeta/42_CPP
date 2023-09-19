@@ -22,7 +22,7 @@ ScavTrap::ScavTrap(str new_name) : ClapTrap(new_name)
 ScavTrap::ScavTrap( const ScavTrap &src ): ClapTrap(src)
 {
 	*this = src;
-	std::cout << "ClapTrap:" << this->get_name() << " copy constructor called" << std::endl;
+	std::cout << "ScavTrap:" << this->get_name() << " copy constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=( ScavTrap const &src)
@@ -41,7 +41,7 @@ void	ScavTrap::attack(const std::string& target)
 {
 	if (this->getEnergyPoints() == 0)
 	{
-		std::cout << "ClapTrap " << this->get_name() << " is out of energy!" << std::endl;
+		std::cout << "ScavTrap " << this->get_name() << " is out of energy!" << std::endl;
 		return ;
 	}
 	std::cout << "ScavTrap " << this->get_name() << " attacks " << target << " causing " << this->getAttackDamage() << " points of damage!" << std::endl;

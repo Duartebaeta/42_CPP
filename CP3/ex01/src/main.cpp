@@ -2,23 +2,40 @@
 
 int main()
 {
-	std::cout << "\e[1;35m---------------Constructing---------------\033[0m" << std::endl;
-	ScavTrap c("daniginga");
-	ScavTrap d("SIUUU");
-	std::cout << "\e[1;35m---------------Testing---------------\033[0m" << std::endl;
-	c.attack(d.get_name());
-	d.takeDamage(c.getAttackDamage());
-	d.guardGate();
-	d.beRepaired(50);
-	c.guardGate();
-	d.attack(c.get_name());
-	c.takeDamage(d.getAttackDamage());
-	d.attack(c.get_name());
-	c.takeDamage(d.getAttackDamage());
-	d.attack(c.get_name());
-	c.takeDamage(d.getAttackDamage());
-	c.beRepaired(10);
-	c.beRepaired(100);
-	std::cout << "\e[1;35m---------------Deconstructing\033[0m---------------" << std::endl;
-	return 0;
+    // Create an object using default constructor
+    ScavTrap scav1;
+    std::cout << "Name: " << scav1.get_name() << ", Hit Points: " << scav1.getHitPoints() << std::endl;
+
+    // Create an object using the parameterized constructor
+    ScavTrap scav2("Scav2");
+    std::cout << "Name: " << scav2.get_name() << ", Hit Points: " << scav2.getHitPoints() << std::endl;
+
+    // Test attack method (inherited but overridden)
+    scav1.attack("Enemy1");
+    scav2.attack("Enemy2");
+
+    // Test the new method specific to ScavTrap
+    scav1.guardGate();
+    scav2.guardGate();
+
+    // Test takeDamage (inherited from ClapTrap)
+    scav1.takeDamage(30);
+    scav2.takeDamage(40);
+
+    // Test beRepaired (inherited from ClapTrap)
+    scav1.beRepaired(10);
+    scav2.beRepaired(20);
+	scav2.beRepaired(30);
+	scav2.beRepaired(20);
+
+    // Test copy constructor
+    ScavTrap scav3(scav2);
+    scav3.attack("Enemy3");
+
+    // Test assignment operator
+    scav1 = scav2;
+    scav1.attack("NewEnemy1");
+
+    // Destructor will be called automatically for scav1, scav2, and scav3
+    return 0;
 }

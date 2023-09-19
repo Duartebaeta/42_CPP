@@ -2,46 +2,39 @@
 
 int main()
 {
-	{
-		std::cout << "\e[1;35m---------------ScavTrap Test---------------\033[0m" << std::endl;
-		std::cout << "\e[1;35m---------------Constructing---------------\033[0m" << std::endl;
-		ScavTrap c("Scavi");
-		ScavTrap d("DVAI");
-		std::cout << "\e[1;35m---------------Testing---------------\033[0m" << std::endl;
-		c.attack(d.get_name());
-		d.takeDamage(c.getAttackDamage());
-		d.guardGate();
-		d.beRepaired(50);
-		c.guardGate();
-		d.attack(c.get_name());
-		c.takeDamage(d.getAttackDamage());
-		d.attack(c.get_name());
-		c.takeDamage(d.getAttackDamage());
-		d.attack(c.get_name());
-		c.takeDamage(d.getAttackDamage());
-		c.beRepaired(10);
-		std::cout << "\e[1;35m---------------Deconstructing\033[0m---------------" << std::endl;
-	}
-	{
-		std::cout << "\e[1;35m---------------FragTrap Test---------------\033[0m" << std::endl;
-		std::cout << "\e[1;35m---------------Constructing---------------\033[0m" << std::endl;
-		FragTrap a("sapinho");
-		FragTrap b("ppnc");
-		std::cout << "\e[1;35m---------------Testing---------------\033[0m" << std::endl;
-		a.highFivesGuys();
-		a.attack(b.get_name());
-		b.takeDamage(b.getAttackDamage());
-		b.beRepaired(b.getAttackDamage());
-		b.attack(a.get_name());
-		a.takeDamage(b.getAttackDamage());
-		b.attack(a.get_name());
-		a.takeDamage(b.getAttackDamage());
-		b.attack(a.get_name());
-		a.takeDamage(b.getAttackDamage());
-		b.attack(a.get_name());
-		a.takeDamage(b.getAttackDamage());
-		b.attack(a.get_name());
-		a.takeDamage(b.getAttackDamage());
-		std::cout << "\e[1;35m---------------Deconstructing\033[0m---------------" << std::endl;
-	}
+    // Tests for FragTrap
+    // Create an object using the default constructor
+    FragTrap frag1;
+    std::cout << "Name: " << frag1.get_name() << ", Hit Points: " << frag1.getHitPoints() << std::endl;
+
+    // Create an object using the parameterized constructor
+    FragTrap frag2("Frag2");
+    std::cout << "Name: " << frag2.get_name() << ", Hit Points: " << frag2.getHitPoints() << std::endl;
+
+    // Test attack method (inherited but should behave as per base class)
+    frag1.attack("Enemy1");
+    frag2.attack("Enemy2");
+
+    // Test the new method specific to FragTrap
+    frag1.highFivesGuys();
+    frag2.highFivesGuys();
+
+    // Test takeDamage (inherited from ClapTrap)
+    frag1.takeDamage(-30);
+    frag2.takeDamage(40);
+
+    // Test beRepaired (inherited from ClapTrap)
+    frag1.beRepaired(-10);
+    frag2.beRepaired(20);
+
+    // Test copy constructor
+    FragTrap frag3(frag2);
+    frag3.attack("Enemy3");
+
+    // Test assignment operator
+    frag1 = frag2;
+    frag1.attack("NewEnemy1");
+
+    // Destructor will be called automatically for frag1, frag2, and frag3
+    return 0;
 }
