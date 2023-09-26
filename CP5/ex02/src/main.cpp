@@ -35,6 +35,9 @@ int main(void)
 			A.beSigned(signer);
 			std::cout << A;
 			A.execute(exec);
+			A.execute(exec);
+			A.execute(exec);
+			A.execute(exec);
 			std::cout << "\e[1;35m===========Destructing===========\033[0m" << std::endl;
 		}
 		catch (std::exception &error){std::cout << error.what() << std::endl;}
