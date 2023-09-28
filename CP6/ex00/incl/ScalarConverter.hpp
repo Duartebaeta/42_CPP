@@ -17,6 +17,10 @@ class ScalarConverter
 		ScalarConverter& operator=(const ScalarConverter& copy);
 	public:
 		//ScalarConverter(str arg);
+		static str	char_value;
+		static str	int_value;
+		static str	float_value;
+		static str	double_value;
 		static void	convert(str value);
 		static void	float_convert(float value, str v);
 		static void	double_convert(double value, str v);
@@ -25,8 +29,7 @@ class ScalarConverter
 		static void	special_convert(str value);
 		static std::string formatFloat(float value);
 		static std::string formatDouble(double value);
-		static void	char_logic(str value);
-		static int	int_logic(str v);
-		static void	float_logic(str v);
-		static void	double_logic(str v);
+		static void get_char(int c);
+		static void get_int(float c, str value);
+		static void get_float(double c, str value);
 };

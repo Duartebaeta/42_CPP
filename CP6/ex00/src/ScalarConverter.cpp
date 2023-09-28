@@ -109,77 +109,17 @@ std::string ScalarConverter::formatDouble(double value) {
 
 void	ScalarConverter::special_convert(str c)
 {
-	std::cout << "Enter char: " << c << std::endl;
-}
-
-void	ScalarConverter::char_logic(str value)
-{
-	str myChar;
-	int c;
-	try {
-		c = int_logic(value);
-	}
-	catch (std::exception &e) {
-		std::cout << "char: Not Possible" << std::endl;
-	}
-	if (c <= 31 || c >= 127)
-		std::cout << "char: Non displayable" << std::endl;
-	else
-		std::cout << "char: " << c << std::endl;
-}
-
-int	ScalarConverter::int_logic(str value)
-{
-	try {
-		float_logic(value);
-	}
-	catch (std::exception &e) {
-		std::cout << "int: Not possible";
-	}
-	int	myInt;
-	std::istringstream so(value);
-	if (!(so >> myInt))
-	{
-		std::cout << "int: Not possible" << std::endl;
-		throw std::exception();
-	}
-	else
-	{
-		std::cout << "int: " << myInt << std::endl;
-		return (myInt);
-	}
-}
-
-void ScalarConverter::float_logic(str value)
-{
-	float	myFloat;
-	std::istringstream so(value);
-	if (!(so >> myFloat))
-	{
-		std::cout << "float: Not possible" << std::endl;
-		throw std::exception();
-	}
-	else
-		std::cout << "float: " << myFloat << std::endl;
-}
-
-void ScalarConverter::double_logic(str value)
-{
-	double myDouble;
-	std::istringstream iss(value);
-
-	if (!(iss >> myDouble))
-	{
-		std::cout << "double: Not possible" << std::endl;
-		throw std::exception();
-	}
-	else
-		std::cout << "double: " << myDouble << std::endl;
+	if (c == "-inff" || c == "-inf")
+		std::cout << "char: Not possible" << std::endl << "int: Not possible" << std::endl << "float: -inff" << std::endl << "double: -inf" << std::endl;
+	else if (c == "+inff" || c == "+inf")
+		std::cout << "char: Not possible" << std::endl << "int: Not possible" << std::endl << "float: +inff" << std::endl << "double: +inf" << std::endl;
+	else if (c == "nanf" || c == "nan")
+		std::cout << "char: Not possible" << std::endl << "int: Not possible" << std::endl << "float: nanf" << std::endl << "double: nan" << std::endl;
 }
 
 void	ScalarConverter::char_convert(char c)
 {
-	if (c < 31 || c == 127)
+	if (c <= 31 || c == 127)
 	{
 		std::cout << "Invalid argument, non printable char"<< std::endl;
 		return ;
@@ -192,55 +132,79 @@ void	ScalarConverter::char_convert(char c)
 	std::cout << "char: " << c << std::endl << "int: " << myInt << std::endl << "float: " << formatFloat(myFloat) << std::endl << "double: " << formatDouble(myDouble) << std::endl;
 }
 
+void	ScalarConverter::get_char(int c)
+{
+	std::stringstream ss;
+
+	if (c < 0 || c > 127)
+		ss << "Not possible";
+	else
+	{
+		if (c <= 31)
+			ss << "Not printable";
+		else
+			ss << static_cast<char>(c);
+	}
+	std::cout << "char: " << ss.str() << std::endl;
+}
+
+void	ScalarConverter::get_int(float c, str value)
+{
+	std::stringstream ss;
+	std::istringstream so(value);
+	int	myInt;
+
+	if (!(so >> myInt))
+	{
+		ss << "Not possible";
+		ScalarConverter::get_char(-1);
+	}
+	else
+	{
+		myInt = static_cast<int>(c);
+		ss << myInt;
+		ScalarConverter::get_char(myInt);
+	}
+	std::cout << "int: " << ss.str() << std::endl;
+}
+
+void	ScalarConverter::get_float(double c, str value)
+{
+	std::stringstream ss;
+	std::istringstream so(value);
+	float	myFloat;
+
+	if (!(so >> myFloat))
+	{
+		ss << "Not possible";
+		ScalarConverter::get_int(-1, value);
+	}
+	else
+	{
+		myFloat = static_cast<float>(c);
+		ss << formatFloat(myFloat);
+		ScalarConverter::get_int(myFloat, value);
+	}
+	std::cout << "float: " << ss.str() << std::endl;
+}
+
 void	ScalarConverter::int_convert(int c)
 {
 	float myFloat = static_cast<float>(c);
 	double myDouble = static_cast<double>(c);
-	if (c <= 31 || c >= 127)
-	{
-		str myChar = "Non displayable";
-		std::cout << "char: " << myChar << std::endl << "int: " << c << std::endl << "float: " << formatFloat(myFloat) << std::endl << "double: " << formatDouble(myDouble) << std::endl;
-	}
-	else
-	{
-		char myChar = static_cast<char>(c);
-		std::cout << "char: " << myChar << std::endl << "int: " << c << std::endl << "float: " << formatFloat(myFloat) << std::endl << "double: " << formatDouble(myDouble) << std::endl;
-	}
+	ScalarConverter::get_char(c);
+	std::cout << "int: " << c << std::endl << "float: " << formatFloat(myFloat) << std::endl << "double: " << formatDouble(myDouble) << std::endl;
 }
 
 void	ScalarConverter::float_convert(float c, str value)
 {
-	str badChar = "";
-	str badInt = "";
-	char goodChar;
-	int	myInt;
-	std::stringstream ss;
-	std::istringstream so(value);
 	double myDouble = static_cast<double>(c);
-	if (!(so >> myInt))
-	{
-		badInt = "Not possible";
-		badChar = "Not possible";
-	}
-	else
-	{
-		ss << myInt;
-		if (myInt < 0 || myInt > 127)
-			badChar = "Not possible";
-		else
-		{
-			if (myInt <= 31)
-				badChar = "Not printable";
-			else
-				goodChar = myInt;
-		}
-	}
-	std::cout << "char: " << (badChar.length() == 0 ? std::string(1, goodChar) : badChar) << std::endl << "int: " << (badInt.length() == 0 ? ss.str() : badInt) << std::endl << "float: " << formatFloat(c) << std::endl << "double: " << formatDouble(myDouble) << std::endl;
+	ScalarConverter::get_int(c, value);
+	std::cout << "float: " << formatFloat(c) << std::endl << "double: " << formatDouble(myDouble) << std::endl;
 }
 
 void	ScalarConverter::double_convert(double c, str value)
 {
-	(void)c;
-	std::stringstream ss;
-	std::istringstream so(value);
+	ScalarConverter::get_float(c, value);
+	std::cout << "double: " << formatDouble(c) << std::endl;
 }
