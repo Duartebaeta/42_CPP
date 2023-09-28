@@ -16,11 +16,6 @@ class ScalarConverter
 		~ScalarConverter();
 		ScalarConverter& operator=(const ScalarConverter& copy);
 	public:
-		//ScalarConverter(str arg);
-		static str	char_value;
-		static str	int_value;
-		static str	float_value;
-		static str	double_value;
 		static void	convert(str value);
 		static void	float_convert(float value, str v);
 		static void	double_convert(double value, str v);
