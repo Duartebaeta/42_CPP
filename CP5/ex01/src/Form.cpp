@@ -76,16 +76,8 @@ void	Form::beSigned(const Bureaucrat& b)
 	if (b.getGrade() <= this->sign_grade)
 	{
 		this->is_signed = true;
-		this->signForm(b);
+		b.signForm(*this);
 	}
 	else
 		throw Form::GradeTooLowException();
-}
-
-void	Form::signForm(const Bureaucrat& b)
-{
-	if (this->is_signed)
-		std::cout << b.getName() << " signed " << this->name << std::endl;
-	else
-		std::cout << b.getName() << " couldn't sign " << this->name << " because his grade was too low";
 }

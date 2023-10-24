@@ -12,7 +12,7 @@ int main() {
     try {
         Form f2("InvalidForm", 0, 151);
     } catch (std::exception& e) {
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << e.what() << std::endl << std::endl;
     }
 
     // Test 3: Create a Bureaucrat

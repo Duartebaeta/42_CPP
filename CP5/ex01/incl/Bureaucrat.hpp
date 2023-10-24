@@ -1,8 +1,11 @@
 #pragma once
 
 #include <iostream>
+#include "./Form.hpp"
 
 typedef std::string str;
+
+class Form;
 
 class	Bureaucrat
 {
@@ -22,6 +25,7 @@ class	Bureaucrat
 		int		getGrade(void) const;
 		void	incrementGrade(void);
 		void	decrementGrade(void); 
+		void	signForm(const Form &form) const;
 		
 		//Exception Classes
 		class GradeTooHighException: public std::exception

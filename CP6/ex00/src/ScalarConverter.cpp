@@ -71,6 +71,14 @@ void	ScalarConverter::convert(str value)
 	}
 	else
 	{
+		for (int counter = 0; value[counter]; counter++)
+		{
+			if (value[counter] < 48 || value[counter] > 57)
+			{
+				std::cout << "Bad argument" << std::endl;
+				return ;
+			}
+		}
 		int myInt;
 		std::istringstream iss(value);
 

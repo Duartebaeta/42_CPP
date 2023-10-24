@@ -5,6 +5,8 @@
 
 typedef std::string str;
 
+class Bureaucrat;
+
 class Form
 {
 	private:
@@ -34,7 +36,6 @@ class Form
 
 		//Class functions
 		void		beSigned(const Bureaucrat& b);
-		void		signForm(const Bureaucrat& b);
 
 		//Exception classes
 		class GradeTooHighException: public std::exception

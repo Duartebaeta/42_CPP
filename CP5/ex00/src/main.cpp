@@ -72,5 +72,25 @@ int main() {
 		std::cerr << "Exception: " << e.what() << '\n';
 	}
 
+	std::cout << "\n--- Out of bounds increment Grade Test ---\n";
+	try {
+		Bureaucrat i(1, "Bored");
+		std::cout << "Before: " << i;
+		i.incrementGrade();
+		std::cout << "After: " << i;
+	} catch (const std::exception &e) {
+		std::cerr << "Exception: " << e.what() << '\n';
+	}
+
+	std::cout << "\n--- Out of bounds decrement Grade Test ---\n";
+	try {
+		Bureaucrat j(150, "Insert Name");
+		std::cout << "Before: " << j;
+		j.decrementGrade();
+		std::cout << "After: " << j;
+	} catch (const std::exception &e) {
+		std::cerr << "Exception: " << e.what() << '\n';
+	}
+
 	return 0;
 }
