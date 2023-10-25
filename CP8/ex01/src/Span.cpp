@@ -61,3 +61,18 @@ unsigned int	Span::shortestSpan()
 
 	return smallestSpan;
 }
+
+void	Span::addRange(unsigned int begin, unsigned int end)
+{
+	unsigned int fill = end - begin;
+	if (data.size() + fill > N)
+		throw std::runtime_error("Too many elements to add");
+	for (unsigned int counter = 0; counter < fill; counter++)
+	{
+		int randomNum = std::rand();
+		if (std::rand() % 2) {
+			randomNum = -randomNum;
+		}
+		this->addNumber(randomNum);
+	}
+}

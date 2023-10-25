@@ -23,13 +23,5 @@ class Span
 		void addNumber(int num);
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
-		
-		template <typename Iterator>
-		void	addRange(Iterator begin, Iterator end)
-		{
-			unsigned int fill = std::distance(begin, end);
-			if (data.size() + fill > N)
-				throw std::runtime_error("Too many elements to add");
-			data.insert(data.end(), begin, end);
-		}
+		void	addRange(unsigned int begin, unsigned int end);
 };
