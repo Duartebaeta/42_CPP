@@ -1,12 +1,12 @@
 # Variables
-NAME := easy
-CC := g++
+NAME := span
+CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g
 PATH_SRC := ./src
 PATH_OBJ := ./obj
 PATH_INCL := ./incl
 INCL := $(addprefix $(PATH_INCL)/, Span.hpp)
-SRCS := $(addprefix $(PATH_SRC)/, main.cpp)
+SRCS := $(addprefix $(PATH_SRC)/, main.cpp Span.cpp)
 OBJS := $(SRCS:$(PATH_SRC)/%.cpp=$(PATH_OBJ)/%.o)
 
 # Colors
