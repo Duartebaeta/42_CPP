@@ -34,5 +34,10 @@ int main() {
 	std::cout << "arr2[0] = " << arr2[0] << ", arr2[1] = " << arr2[1] << std::endl;
 	std::cout << "arr3[0] = " << arr3[0] << ", arr3[1] = " << arr3[1] << std::endl;
 
+	Array<std::string> arr4(3);
+	arr4[0] = "ola";
+	arr4[1] = "adeus";
+	std::cout << "arr4[0] = " << arr4[0] << ", arr4[1] = " << arr4[1] << std::endl;
+
 	return 0;
 }
