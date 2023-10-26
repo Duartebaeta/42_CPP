@@ -3,7 +3,7 @@
 int	main()
 {
 	Span sp = Span(500);
-	std::srand(std::time(0));
+	srand(time(NULL));
 	try {
 		sp.addRange(0, 10);
 		std::cout << sp.shortestSpan() << std::endl;
