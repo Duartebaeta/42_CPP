@@ -1,12 +1,12 @@
 # Variables
-NAME := easy
+NAME := btc
 CC := c++
 CFLAGS := -Wall -Wextra -Werror -std=c++98 -g
 PATH_SRC := ./src
 PATH_OBJ := ./obj
 PATH_INCL := ./incl
-INCL := $(addprefix $(PATH_INCL)/, easyfind.hpp)
-SRCS := $(addprefix $(PATH_SRC)/, main.cpp)
+INCL := $(addprefix $(PATH_INCL)/, BitcoinExchange.hpp)
+SRCS := $(addprefix $(PATH_SRC)/, main.cpp BitcoinExchange.cpp)
 OBJS := $(SRCS:$(PATH_SRC)/%.cpp=$(PATH_OBJ)/%.o)
 
 # Colors
@@ -36,7 +36,7 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)Compilation successful!$(NC)"
 
 # Cleanup rules
-clean:
+clean:	
 	@echo "$(RED)Removing object files...$(NC)"
 	@rm -rf $(OBJS)
 

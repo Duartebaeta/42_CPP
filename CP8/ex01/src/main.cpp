@@ -2,10 +2,10 @@
 
 int	main()
 {
-	Span sp = Span(500);
+	Span sp = Span(200);
 	srand(time(NULL));
 	try {
-		sp.addRange(0, 10);
+		sp.addRange(100, 99);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
