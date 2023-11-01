@@ -35,7 +35,10 @@ int	PmergeMe::my_atoi(str s)
 	int num;
 	iss >> num;
 	if (iss.fail())
+	{
+		std::cout << "Invalid: " << s <<  std::endl;
 		throw std::runtime_error("Invalid number");
+	}
 	return num;
 }
 
@@ -144,44 +147,58 @@ void	PmergeMe::sort_list()
 	}
 }
 
-void	PmergeMe::sort(str argument)
+void	PmergeMe::sort(char **argv)
 {
 	str	temp;
 
-	for (int counter = 0; argument[counter]; counter++)
+	for (int c = 1; argv[c]; c++)
 	{
-		if ((argument[counter] < '0' || argument[counter] > '9') && argument[counter] != ' ')
-			throw std::runtime_error("Error: invalid input");
-		else if (argument[counter] == ' ')
+		for (int counter = 0; argv[c][counter]; counter++)
 		{
-			try {
-				v_unsorted.push_back(my_atoi(temp));
-				l_unsorted.push_back(my_atoi(temp));
-				temp.clear();
-			} catch (std::exception &e) {
-				throw;
+			if ((argv[c][counter] < '0' || argv[c][counter] > '9') && argv[c][counter] != ' ')
+				throw std::runtime_error("Error: invalid input");
+			else if (argv[c][counter] == ' ')
+			{
+				try {
+					v_unsorted.push_back(my_atoi(temp));
+					l_unsorted.push_back(my_atoi(temp));
+					temp.clear();
+				} catch (std::exception &e) {
+					throw;
+				}
 			}
+			temp.push_back(argv[c][counter]);
 		}
-		temp.push_back(argument[counter]);
+		try {
+			v_unsorted.push_back(my_atoi(temp));
+			l_unsorted.push_back(my_atoi(temp));
+			temp.clear();
+		} catch (std::exception &e) {
+			throw;
+		}
 	}
-	try {
-		v_unsorted.push_back(my_atoi(temp));
-		l_unsorted.push_back(my_atoi(temp));
-		temp.clear();
-	} catch (std::exception &e) {
-		throw;
-	}
-	std::cout << "Before: " << argument << std::endl;
+	if (v_unsorted.size() < 2)
+		throw std::runtime_error("Not enough numbers for sorting");
+	
+	std::cout << "Before: ";
+	for (std::vector<int>::iterator it = v_unsorted.begin(); it != v_unsorted.end(); ++it)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
 	clock_t	_vectorTime = clock();
 	sort_vector();
 	_vectorTime = clock() - _vectorTime;
+
 	std::cout << "After: ";
 	for (std::vector<int>::iterator it = v_sorted.begin(); it != v_sorted.end(); ++it)
 		std::cout << *it << " ";
 	std::cout << std::endl;
+
 	std::cout << "Time to process a range of " << v_sorted.size() << " elements with std::vector : " << (double)( (double)_vectorTime / CLOCKS_PER_SEC ) * 1000 << " miliseconds " << std::endl;
+	
 	clock_t	_listTime = clock();
 	sort_list();
 	_listTime = clock() - _listTime;
+	
 	std::cout << "Time to process a range of " << v_sorted.size() << " elements with std::list : " << (double)( (double)_listTime / CLOCKS_PER_SEC ) * 1000 << " miliseconds " << std::endl;
 }

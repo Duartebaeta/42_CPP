@@ -1,7 +1,7 @@
 # Variables
 NAME := PmergeMe
 CC := c++
-CFLAGS := -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -g
 PATH_SRC := ./src
 PATH_OBJ := ./obj
 PATH_INCL := ./incl

@@ -35,5 +35,5 @@ class PmergeMe
 		PmergeMe&	operator=(const PmergeMe& copy);
 		~PmergeMe();
 
-		void	sort(str argument);
+		void	sort(char **argv);
 };
