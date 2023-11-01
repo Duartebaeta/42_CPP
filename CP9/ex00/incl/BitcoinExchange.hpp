@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
+#include <iterator>
 #include <map>
 
 typedef std::string str;

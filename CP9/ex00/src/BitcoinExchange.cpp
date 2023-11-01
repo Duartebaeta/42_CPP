@@ -69,6 +69,14 @@ void	BitcoinExchange::linkData(str line)
 int		BitcoinExchange::validateData(str line)
 {
 	struct tm 		tm;
+	size_t pos = line.find('|');
+	if (pos != std::string::npos) {
+		int distance = static_cast<int>(pos);
+		if (distance != 11)
+			std::cout << "Error: bad input => " << line << std::endl;
+	}
+	else
+		std::cout << "Error: bad input => " << line << std::endl;
 	if (strptime(line.substr(0, 10).c_str(), "%Y-%m-%d", &tm) == NULL)
 	{
 		std::cout << "Error: bad input => " << line << std::endl;
