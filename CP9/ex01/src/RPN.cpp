@@ -46,6 +46,8 @@ int	RPN::operations(char op)
 			return (first * last);
 			break;
 		case '/':
+			if (last == 0)
+				throw std::runtime_error("Error: Division by zero");
 			return (first / last);
 			break;
 		default:
@@ -61,26 +63,23 @@ void	RPN::solve(str equation)
 
 	for (int counter = 0; equation[counter]; counter++)
 	{
+		if (n_counter > 1)
+				throw std::runtime_error("Error: Invalid input");
 		if (equation[counter] == ' ')
 		{
 			n_counter = 0;
 			continue;
 		}
 		else if (equation[counter] >= '0' && equation[counter] <= '9')
-		{
-			n_counter++;
-			if (n_counter >= 2)
-				throw std::runtime_error("Error: Numbers must be bellow 10");
 			stack.push(equation[counter] - '0');
-		}
 		else if (operators.find(equation[counter]) != str::npos)
-		{
-			n_counter = 0;
 			stack.push(operations(equation[counter]));
-		}
 		else
 			throw std::runtime_error("Error: Invalid char");
+		n_counter++;
 	}
+	if (n_counter > 1)
+		throw std::runtime_error("Error: Invalid input");
 	if (stack.size() != 1)
 		throw std::runtime_error("Error: Not enough operations for final result");
 	std::cout << stack.top() << std::endl;
