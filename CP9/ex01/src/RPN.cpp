@@ -57,23 +57,31 @@ int	RPN::operations(char op)
 void	RPN::solve(str equation)
 {
 	str operators = "+-*/";
+	int	n_counter = 0;
 
 	for (int counter = 0; equation[counter]; counter++)
 	{
 		if (equation[counter] == ' ')
-			continue;
-		else if (equation[counter] >= '0' && equation[counter] <= '9')
-			stack.push(equation[counter] - '0');
-		else if (operators.find(equation[counter]) != str::npos)
-			stack.push(operations(equation[counter]));
-		else
 		{
-			std::cout << "Error: Invalid char" << std::endl;
-			return;
+			n_counter = 0;
+			continue;
 		}
+		else if (equation[counter] >= '0' && equation[counter] <= '9')
+		{
+			n_counter++;
+			if (n_counter >= 2)
+				throw std::runtime_error("Error: Numbers must be bellow 10");
+			stack.push(equation[counter] - '0');
+		}
+		else if (operators.find(equation[counter]) != str::npos)
+		{
+			n_counter = 0;
+			stack.push(operations(equation[counter]));
+		}
+		else
+			throw std::runtime_error("Error: Invalid char");
 	}
 	if (stack.size() != 1)
-		std::cout << "Error: Not enough operations for final result" << std::endl;
-	else
-		std::cout << stack.top() << std::endl;
+		throw std::runtime_error("Error: Not enough operations for final result");
+	std::cout << stack.top() << std::endl;
 }
