@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <list>
+#include <sstream>
 #include <ctime>
 
 typedef std::string str;
@@ -25,6 +27,8 @@ class PmergeMe
 		
 		void	sort_list();
 		void	l_make_pairs();
+
+		int		my_atoi(str s);
 	public:
 		PmergeMe();
 		PmergeMe(const PmergeMe& copy);

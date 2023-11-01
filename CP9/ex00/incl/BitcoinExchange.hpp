@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <fstream>
 #include <cstdlib>
+#include <string>
 #include <map>
 
 typedef std::string str;

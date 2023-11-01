@@ -29,6 +29,16 @@ PmergeMe::~PmergeMe()
 	std::cout << "Default destructor called" << std::endl;
 }
 
+int	PmergeMe::my_atoi(str s)
+{
+	std::istringstream iss(s);
+	int num;
+	iss >> num;
+	if (iss.fail())
+		throw std::runtime_error("Invalid number");
+	return num;
+}
+
 void	PmergeMe::v_make_pairs()
 {
 	if (v_unsorted.size() % 2)
@@ -145,8 +155,8 @@ void	PmergeMe::sort(str argument)
 		else if (argument[counter] == ' ')
 		{
 			try {
-				v_unsorted.push_back(stoi(temp));
-				l_unsorted.push_back(stoi(temp));
+				v_unsorted.push_back(my_atoi(temp));
+				l_unsorted.push_back(my_atoi(temp));
 				temp.clear();
 			} catch (std::exception &e) {
 				throw;
@@ -155,8 +165,8 @@ void	PmergeMe::sort(str argument)
 		temp.push_back(argument[counter]);
 	}
 	try {
-		v_unsorted.push_back(stoi(temp));
-		l_unsorted.push_back(stoi(temp));
+		v_unsorted.push_back(my_atoi(temp));
+		l_unsorted.push_back(my_atoi(temp));
 		temp.clear();
 	} catch (std::exception &e) {
 		throw;

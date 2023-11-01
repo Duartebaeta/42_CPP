@@ -42,7 +42,7 @@ void	BitcoinExchange::parseData()
 	{
 		if (counter++ == -1)
 			continue;
-		data.insert(std::make_pair(line.substr(0, 10), std::stof(line.substr((line.find(',')) + 1))));
+		data.insert(std::make_pair(line.substr(0, 10), strtof((line.substr((line.find(',')) + 1)).c_str(), NULL)));
 	}
 	
 	file.close();
@@ -52,14 +52,14 @@ void	BitcoinExchange::linkData(str line)
 {
 	std::map<std::string, float>::iterator it = data.find(line.substr(0, 10));
 	if(it != data.end()) {
-		std::cout << it->first << " => " << it->second << " = " << (it->second * std::stof(line.substr(line.find('|') + 1))) << std::endl;
+		std::cout << it->first << " => " << it->second << " = " << (it->second * strtof((line.substr(line.find('|') + 1)).c_str(), NULL)) << std::endl;
 	}
 	else
 	{
 		std::map<std::string, float>::iterator it = data.lower_bound(line.substr(0, 10));
 		if(it != data.begin()) {
 			--it;
-			std::cout << it->first << " => " << it->second << " = " << (it->second * std::stof(line.substr(line.find('|') + 1))) << std::endl;
+			std::cout << it->first << " => " << it->second << " = " << (it->second * strtof((line.substr(line.find('|') + 1)).c_str(), NULL)) << std::endl;
 		} else {
 			std::cout << "Error: No date lower was available" << std::endl;
 		}
@@ -75,12 +75,12 @@ int		BitcoinExchange::validateData(str line)
 		return (0);
 	}
 	try {
-		if (std::stof(line.substr(line.find('|') + 1)) < 0)
+		if (strtof((line.substr(line.find('|') + 1)).c_str(), NULL) < 0)
 		{
 			std::cout << "Error: not a positive number." << std::endl;
 			return (0);
 		}
-		else if (std::stof(line.substr(line.find('|') + 1)) > 1000)
+		else if (strtof((line.substr(line.find('|') + 1)).c_str(), NULL) > 1000)
 		{
 			std::cout << "Error: too large a number." << std::endl;
 			return (0);
@@ -100,7 +100,7 @@ void	BitcoinExchange::exchange()
 		throw;
 	}
 
-	std::ifstream file(this->filename);
+	std::ifstream file(this->filename.c_str());
 	str line;
 	int	counter = -1;
 

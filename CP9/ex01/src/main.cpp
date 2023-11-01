@@ -6,6 +6,10 @@ int	main(int argc, char **argv)
 		return 1;
 	RPN r;
 
-	r.solve(argv[1]);
+	try {
+		r.solve(argv[1]);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 	return 1;
 }

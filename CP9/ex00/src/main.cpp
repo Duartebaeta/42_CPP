@@ -1,9 +1,11 @@
 #include "../incl/BitcoinExchange.hpp"
 
-int main()
+int main(int argc, char** argv)
 {
+	if (argc != 2)
+		return 1;
 	try {
-		BitcoinExchange b("input.txt");
+		BitcoinExchange b(argv[1]);
 
 		b.exchange();
 	} catch (std::exception &e) {
