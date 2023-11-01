@@ -100,13 +100,15 @@ void	BitcoinExchange::exchange()
 		throw;
 	}
 
+	if (this->filename.size() <= 4 || this->filename.substr(filename.size() - 4, 4).compare(".csv"))
+		throw std::runtime_error("Input file must be in the .csv format");
 	std::ifstream file(this->filename.c_str());
 	str line;
 	int	counter = -1;
 
 
 	if (!file.is_open())
-		throw std::runtime_error("Filename is invalid");
+		throw std::runtime_error("File doesn't exist");
 	
 	while (getline(file, line))
 	{
