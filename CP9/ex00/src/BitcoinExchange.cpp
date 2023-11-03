@@ -66,38 +66,49 @@ void	BitcoinExchange::linkData(str line)
 	}
 }
 
-int		BitcoinExchange::validateData(str line)
+bool	BitcoinExchange::validate_date(str date)
 {
 	struct tm 		tm;
-	size_t pos = line.find('|');
-	if (pos != std::string::npos) {
-		int distance = static_cast<int>(pos);
-		if (distance != 11)
-			std::cout << "Error: bad input => " << line << std::endl;
-	}
-	else
-		std::cout << "Error: bad input => " << line << std::endl;
-	if (strptime(line.substr(0, 10).c_str(), "%Y-%m-%d", &tm) == NULL)
+	if (strptime(date.c_str(), "%Y-%m-%d", &tm) == NULL)
+		return (false);
+	return (true);
+}
+
+bool	BitcoinExchange::validate_float(str value)
+{
+	std::istringstream ss (value);
+
+	float f;
+	ss >> f;
+	if (f > 1000 || f < 0)
+		return (false);
+	return !ss.fail() && ss.eof();
+}
+
+bool		BitcoinExchange::validateData(str line)
+{
+	size_t	pipePos = line.find('|');
+	if (pipePos == std::string::npos || pipePos == 0 || pipePos == line.length() - 1)
 	{
-		std::cout << "Error: bad input => " << line << std::endl;
-		return (0);
+		std::cout << "Error: Invalid input => " << line << std::endl;
+		return (false);
 	}
-	try {
-		if (strtof((line.substr(line.find('|') + 1)).c_str(), NULL) < 0)
-		{
-			std::cout << "Error: not a positive number." << std::endl;
-			return (0);
-		}
-		else if (strtof((line.substr(line.find('|') + 1)).c_str(), NULL) > 1000)
-		{
-			std::cout << "Error: too large a number." << std::endl;
-			return (0);
-		}
-	} catch (std::exception &e) {
-		std::cout << "Error: too large a number." << std::endl;
-		return (0);
+
+	str date = line.substr(0, pipePos);
+	str value = line.substr(pipePos + 1);
+
+	date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
+	if (date.length() != 10 || !validate_date(date))
+	{
+		std::cout << "Error: Invalid input => " << line << std::endl;
+		return (false);
 	}
-	return (1);
+	if (!validate_float(value))
+	{
+		std::cout << "Error: Invalid number => " << line << std::endl;
+		return (false);
+	}
+	return (true);
 }
 
 void	BitcoinExchange::exchange()

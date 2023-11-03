@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <string>
 #include <iterator>
+#include <sstream>
+#include <cctype>
 #include <map>
 
 typedef std::string str;
@@ -18,7 +20,9 @@ class BitcoinExchange
 
 		void	parseData();
 		void	linkData(str line);
-		int		validateData(str line);
+		bool	validateData(str line);
+		bool	validate_date(str date);
+		bool	validate_float(str value);
 	public:
 		BitcoinExchange();
 		BitcoinExchange(const BitcoinExchange& copy);
